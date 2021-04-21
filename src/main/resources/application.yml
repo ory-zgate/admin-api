@@ -4,6 +4,9 @@ micronaut:
   http:
     client:
       log-level: trace
+  server:
+    port: ${SERVER_PORT:80}
+
 
 datasources:
   default:
@@ -23,5 +26,5 @@ jpa:
 
 kratos:
   endpoint:
-    admin: ${KRATOS_ENDPOINT_ADMIN:http://127.0.0.1:4434}
-    public: ${KRATOS_ENDPOINT_PUBLIC:http://127.0.0.1:4433}
+    admin: ${KRATOS_ADMIN_URL:http://127.0.0.1:4434}
+    public: ${KRATOS_PUBLIC_URL:http://127.0.0.1:4433}
