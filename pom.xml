@@ -189,7 +189,7 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <configuration>
                     <to>
-                        <image>z-gate/user-admin-api:${project.version}</image>
+                        <image>registry.hub.docker.com/z-gate/user-admin-api:${project.version}</image>
                         <auth>
                             <username>${env.DOCKER_HUB_USERNAME}</username>
                             <password>${env.DOCKER_HUB_PASSWORD}</password>
