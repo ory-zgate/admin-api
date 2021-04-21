@@ -25,4 +25,7 @@ jobs:
     - name: Install native-image component
       run: gu install native-image
     - name: Build with Maven
+      env:
+        DOCKER_HUB_USERNAME: {{secrets.DOCKER_HUB_USERNAME}}
+        DOCKER_HUB_PASSWORD: {{secrets.DOCKER_HUB_PASSWORD}}
       run: ./mvnw -q deploy -Dpackaging=docker-native
