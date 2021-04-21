@@ -25,4 +25,4 @@ jobs:
     - name: Install native-image component
       run: gu install native-image
     - name: Build with Maven
-      run: ./mvnw package -Dpackaging=docker-native
+      run: ./mvnw -B package -Dpackaging=docker-native
