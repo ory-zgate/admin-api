@@ -4,15 +4,13 @@ micronaut:
   http:
     client:
       log-level: trace
-  security:
-    enabled: false
 
 datasources:
   default:
-    url: jdbc:mysql://127.0.0.1:33306/kratos?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:33306}/${DB_NAME:kratos}?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     driverClassName: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 'secret'
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:secret}
     dialect: MYSQL
 
 jackson:
@@ -25,5 +23,5 @@ jpa:
 
 kratos:
   endpoint:
-    admin: 'http://127.0.0.1:4434'
-    public: 'http://127.0.0.1:4433'
+    admin: ${KRATOS_ENDPOINT_ADMIN:http://127.0.0.1:4434}
+    public: ${KRATOS_ENDPOINT_PUBLIC:http://127.0.0.1:4433}
