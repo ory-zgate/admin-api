@@ -28,4 +28,4 @@ jobs:
       env:
         DOCKER_HUB_USERNAME: ${{secrets.DOCKER_HUB_USERNAME}}
         DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PASSWORD}}
-      run: ./mvnw deploy -Dpackaging=docker
+      run: ./mvnw -q deploy -Dpackaging=docker-native
