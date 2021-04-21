@@ -1,0 +1,29 @@
+micronaut:
+  application:
+    name: userAdminApi
+  http:
+    client:
+      log-level: trace
+  security:
+    enabled: false
+
+datasources:
+  default:
+    url: jdbc:mysql://127.0.0.1:33306/kratos?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 'secret'
+    dialect: MYSQL
+
+jackson:
+  property-naming-strategy: SNAKE_CASE
+
+jpa:
+  default:
+    entity-scan:
+      packages: 'io.zgate.useradmin.server.persistence.po'
+
+kratos:
+  endpoint:
+    admin: 'http://127.0.0.1:4434'
+    public: 'http://127.0.0.1:4433'

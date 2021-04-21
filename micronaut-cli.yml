@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: io.zgate
+testFramework: spock
+sourceLanguage: java
+buildTool: maven
+features: [annotation-api, app-name, http-client, java, java-application, logback, maven, netty-server, readme, shade, spock, yaml]
