@@ -9,6 +9,8 @@ import io.zgate.useradmin.server.client.model.CreateIdentityReq;
 import io.zgate.useradmin.server.client.model.CreateIdentityResp;
 import io.zgate.useradmin.server.client.model.GetIdentityResp;
 
+import java.util.List;
+
 /**
  * This is just a client wrapper for kratos admin api.
  * Please visit https://www.ory.sh/kratos/docs/reference/api for more details.
@@ -20,4 +22,7 @@ public interface KratosAdminClient {
 
     @Get("/identities/{id}")
     GetIdentityResp getIdentity(@PathVariable("id") final String id);
+
+    @Get("/identities")
+    List<GetIdentityResp> getIdentities();
 }

@@ -12,8 +12,10 @@ import io.zgate.useradmin.server.persistence.dao.IdentityCredentialTypesReposito
 import io.zgate.useradmin.server.persistence.dao.IdentityCredentialsRepository;
 import io.zgate.useradmin.server.persistence.po.IdentityCredentialTypesPO;
 import io.zgate.useradmin.server.persistence.po.IdentityCredentialsPO;
+import io.zgate.useradmin.server.utils.ListUtil;
 
 import javax.inject.Singleton;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -73,5 +75,10 @@ public class UserService {
 
     private String encodePassword(final String rawPassword) {
         return passwordEncoder.encodePassword(rawPassword);
+    }
+
+    public List<Identity> listIdentities() {
+        final List<GetIdentityResp> identityResps = adminClient.getIdentities();
+        return ListUtil.convert(identityResps, GetIdentityResp::toIdentity);
     }
 }

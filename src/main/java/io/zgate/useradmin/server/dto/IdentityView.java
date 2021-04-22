@@ -1,14 +1,14 @@
-package io.zgate.useradmin.server.client.model;
+package io.zgate.useradmin.server.dto;
 
 import io.micronaut.core.annotation.Introspected;
 import io.zgate.useradmin.server.model.Identity;
 
 @Introspected
-public class CreateIdentityResp {
+public class IdentityView {
     private final String id;
     private final Object traits;
 
-    public CreateIdentityResp(String id, Object traits) {
+    public IdentityView(String id, Object traits) {
         this.id = id;
         this.traits = traits;
     }
@@ -21,7 +21,7 @@ public class CreateIdentityResp {
         return traits;
     }
 
-    public Identity toIdentity() {
-        return new Identity(getId(), getTraits());
+    public static IdentityView fromIdentity(Identity identity) {
+        return new IdentityView(identity.getId(), identity.getTraits());
     }
 }
