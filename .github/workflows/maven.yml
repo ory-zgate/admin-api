@@ -30,5 +30,4 @@ jobs:
       env:
         DOCKER_HUB_USERNAME: ${{secrets.DOCKER_HUB_USERNAME}}
         DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PASSWORD}}
-#      run: ./mvnw -q deploy -Dpackaging=docker -Djib.to.image=registry.hub.docker.com/zgate/user-admin-api:${project.version}
       run: ./mvnw -q deploy -Dpackaging=docker -Djib.to.image=registry.hub.docker.com/zgate/user-admin-api:${{steps.short-sha.outputs.sha}}
