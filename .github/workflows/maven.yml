@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: benjlevesque/short-sha@v1.2
+      id: short-sha
     - name: Setup GraalVM environment
       uses: DeLaGuardo/setup-graalvm@4.0
       with:
@@ -28,4 +30,5 @@ jobs:
       env:
         DOCKER_HUB_USERNAME: ${{secrets.DOCKER_HUB_USERNAME}}
         DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PASSWORD}}
-      run: ./mvnw -q deploy -Dpackaging=docker
+#      run: ./mvnw -q deploy -Dpackaging=docker -Djib.to.image=registry.hub.docker.com/zgate/user-admin-api:${project.version}
+      run: ./mvnw -q deploy -Dpackaging=docker -Djib.to.image=registry.hub.docker.com/zgate/user-admin-api:${{steps.short-sha.outputs.sha}}

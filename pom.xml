@@ -207,6 +207,12 @@
                             <password>${env.DOCKER_HUB_PASSWORD}</password>
                         </auth>
                     </to>
+                    <container>
+                        <jvmFlags>
+                            <jvmFlag>-Duser.timezone=Asia/Shanghai</jvmFlag>
+                            <jvmFlag>-Djava.security.egd=file:/dev/./urandom</jvmFlag>
+                        </jvmFlags>
+                    </container>
                 </configuration>
             </plugin>
         </plugins>
