@@ -14,6 +14,7 @@ import io.zgate.useradmin.server.persistence.po.IdentityCredentialTypesPO;
 import io.zgate.useradmin.server.persistence.po.IdentityCredentialsPO;
 
 import javax.inject.Singleton;
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -39,6 +40,7 @@ public class UserService {
         return resp.toIdentity();
     }
 
+    @Transactional(rollbackOn = {RuntimeException.class})
     public void setPassword(final String identityId, final SetPasswordCommand command) {
         checkIdentityExist(identityId);
 
