@@ -20,7 +20,7 @@
         <micronaut.version>2.4.2</micronaut.version>
         <exec.mainClass>io.zgate.useradmin.server.Application</exec.mainClass>
         <micronaut.runtime>netty</micronaut.runtime>
-        <micronaut-data.version>2.3.1</micronaut-data.version>
+        <micronaut-data.version>2.4.1</micronaut-data.version>
     </properties>
 
     <repositories>
@@ -83,6 +83,10 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>io.micronaut.spring</groupId>
+            <artifactId>micronaut-spring</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
             <scope>compile</scope>
@@ -90,6 +94,16 @@
         <dependency>
             <groupId>io.micronaut.data</groupId>
             <artifactId>micronaut-data-hibernate-jpa</artifactId>
+            <version>${micronaut-data.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-spring-jpa</artifactId>
+            <version>${micronaut-data.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-spring</artifactId>
             <version>${micronaut-data.version}</version>
         </dependency>
         <dependency>
@@ -117,6 +131,7 @@
             <artifactId>bcprov-jdk15on</artifactId>
             <version>1.68</version>
         </dependency>
+
     </dependencies>
 
     <build>
