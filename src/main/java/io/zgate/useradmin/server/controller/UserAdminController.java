@@ -2,25 +2,26 @@ package io.zgate.useradmin.server.controller;
 
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 import io.zgate.useradmin.server.command.CreateIdentityCommand;
+import io.zgate.useradmin.server.command.QueryIdentityCommand;
 import io.zgate.useradmin.server.command.SetPasswordCommand;
 import io.zgate.useradmin.server.dto.IdentityView;
 import io.zgate.useradmin.server.model.Identity;
+import io.zgate.useradmin.server.service.QueryService;
 import io.zgate.useradmin.server.service.UserService;
-import io.zgate.useradmin.server.utils.ListUtil;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 @Controller("/identity")
 public class UserAdminController {
     private final UserService userService;
+    private final QueryService queryService;
 
-    public UserAdminController(UserService userService) {
+    public UserAdminController(UserService userService, QueryService queryService) {
         this.userService = userService;
+        this.queryService = queryService;
     }
 
     @Post
@@ -34,12 +35,10 @@ public class UserAdminController {
         userService.setPassword(id, command);
     }
 
-    @Get
-    public List<IdentityView> listIdentities() {
-        List<Identity> identities = userService.listIdentities();
-        return ListUtil.convert(identities, IdentityView::fromIdentity);
+    @Post("/filter")
+    public Page<IdentityView> filterIdentities(QueryIdentityCommand command) {
+        return queryService.queryIdentities(command);
     }
-
 
 
 }
