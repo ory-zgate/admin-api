@@ -1,9 +1,9 @@
 package io.zgate.useradmin.server.service;
 
 import io.zgate.useradmin.server.client.KratosAdminClient;
-import io.zgate.useradmin.server.client.model.CreateIdentityResp;
+import io.zgate.useradmin.server.client.model.CreateOrUpdateIdentityResp;
 import io.zgate.useradmin.server.client.model.GetIdentityResp;
-import io.zgate.useradmin.server.command.CreateIdentityCommand;
+import io.zgate.useradmin.server.command.CreateOrUpdateIdentityCommand;
 import io.zgate.useradmin.server.command.SetPasswordCommand;
 import io.zgate.useradmin.server.exception.ApiException;
 import io.zgate.useradmin.server.exception.ErrorEnum;
@@ -12,10 +12,8 @@ import io.zgate.useradmin.server.persistence.dao.IdentityCredentialTypesReposito
 import io.zgate.useradmin.server.persistence.dao.IdentityCredentialsRepository;
 import io.zgate.useradmin.server.persistence.po.IdentityCredentialTypesPO;
 import io.zgate.useradmin.server.persistence.po.IdentityCredentialsPO;
-import io.zgate.useradmin.server.utils.ListUtil;
 
 import javax.inject.Singleton;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,8 +34,8 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Identity createIdentity(final CreateIdentityCommand command) {
-        final CreateIdentityResp resp = adminClient.createIdentity(command.toCreateIdentityReq());
+    public Identity createIdentity(final CreateOrUpdateIdentityCommand command) {
+        final CreateOrUpdateIdentityResp resp = adminClient.createIdentity(command.toCreateIdentityReq());
         return resp.toIdentity();
     }
 
@@ -77,12 +75,11 @@ public class UserService {
         return passwordEncoder.encodePassword(rawPassword);
     }
 
-    public List<Identity> listIdentities() {
-        final List<GetIdentityResp> identityResps = adminClient.getIdentities();
-        return ListUtil.convert(identityResps, GetIdentityResp::toIdentity);
-    }
-
     public void deleteIdentity(final String id) {
         adminClient.deleteIdentity(id);
+    }
+
+    public void updateIdentity(final String id, final CreateOrUpdateIdentityCommand command) {
+        adminClient.updateIdentity(id, command.toCreateIdentityReq());
     }
 }

@@ -7,7 +7,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
-import io.zgate.useradmin.server.command.CreateIdentityCommand;
+import io.zgate.useradmin.server.command.CreateOrUpdateIdentityCommand;
 import io.zgate.useradmin.server.command.QueryIdentityCommand;
 import io.zgate.useradmin.server.command.SetPasswordCommand;
 import io.zgate.useradmin.server.dto.IdentityView;
@@ -31,7 +31,7 @@ public class UserAdminController {
     }
 
     @Post
-    public Identity createIdentity(@Valid @Body final CreateIdentityCommand command) {
+    public Identity createIdentity(@Valid @Body final CreateOrUpdateIdentityCommand command) {
         return userService.createIdentity(command);
     }
 
@@ -56,6 +56,10 @@ public class UserAdminController {
         userService.deleteIdentity(id);
     }
 
-
+    @Put("{id}")
+    public void updateIdentity(@NotBlank @PathVariable("id") final String id,
+                               @Valid @Body CreateOrUpdateIdentityCommand command) {
+        userService.updateIdentity(id, command);
+    }
 
 }

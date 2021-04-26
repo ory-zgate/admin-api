@@ -3,23 +3,28 @@ package io.zgate.useradmin.server.client.model;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.micronaut.core.annotation.Introspected;
+import io.zgate.useradmin.server.model.Identity;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Introspected
-public class CreateIdentityReq {
-    private final String schemaId;
+public class CreateOrUpdateIdentityResp {
+    private final String id;
     private final Object traits;
 
-    public CreateIdentityReq(String schemaId, Object traits) {
-        this.schemaId = schemaId;
+    public CreateOrUpdateIdentityResp(String id, Object traits) {
+        this.id = id;
         this.traits = traits;
     }
 
-    public String getSchemaId() {
-        return schemaId;
+    public String getId() {
+        return id;
     }
 
     public Object getTraits() {
         return traits;
+    }
+
+    public Identity toIdentity() {
+        return new Identity(getId(), getTraits());
     }
 }

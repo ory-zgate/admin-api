@@ -5,9 +5,10 @@ import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Put;
 import io.micronaut.http.client.annotation.Client;
-import io.zgate.useradmin.server.client.model.CreateIdentityReq;
-import io.zgate.useradmin.server.client.model.CreateIdentityResp;
+import io.zgate.useradmin.server.client.model.CreateOrUpdateIdentityReq;
+import io.zgate.useradmin.server.client.model.CreateOrUpdateIdentityResp;
 import io.zgate.useradmin.server.client.model.GetIdentityResp;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 @Client("${kratos.endpoint.admin}")
 public interface KratosAdminClient {
     @Post("/identities")
-    CreateIdentityResp createIdentity(@Body final CreateIdentityReq req);
+    CreateOrUpdateIdentityResp createIdentity(@Body final CreateOrUpdateIdentityReq req);
 
     @Get("/identities/{id}")
     GetIdentityResp getIdentity(@PathVariable("id") final String id);
@@ -29,4 +30,7 @@ public interface KratosAdminClient {
 
     @Delete("/identities/{id}")
     void deleteIdentity(@PathVariable("id") final String id);
+
+    @Put("/identities/{id}")
+    CreateOrUpdateIdentityResp updateIdentity(@PathVariable("id") final String id, @Body final CreateOrUpdateIdentityReq req);
 }
