@@ -1,8 +1,11 @@
 package io.zgate.useradmin.server.client.model;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.micronaut.core.annotation.Introspected;
 import io.zgate.useradmin.server.model.Identity;
 
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Introspected
 public class CreateIdentityResp {
     private final String id;
