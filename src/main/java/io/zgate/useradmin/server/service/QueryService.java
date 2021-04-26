@@ -29,6 +29,7 @@ public class QueryService {
         return page.map(IdentityView::fromIdentityPO);
     }
 
+    @ReadOnly
     public List<IdentityView> listAll() {
         return StreamSupport.stream(identityRepository.findAll().spliterator(), false)
                             .map(IdentityView::fromIdentityPO)
