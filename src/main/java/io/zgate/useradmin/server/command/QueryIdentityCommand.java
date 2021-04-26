@@ -3,9 +3,13 @@ package io.zgate.useradmin.server.command;
 import io.micronaut.core.annotation.Introspected;
 import io.zgate.useradmin.server.model.Query;
 
+import javax.validation.constraints.NotNull;
+
 @Introspected
 public class QueryIdentityCommand {
+    @NotNull
     private final Integer page;
+    @NotNull
     private final Integer limit;
     private final Query query;
 
