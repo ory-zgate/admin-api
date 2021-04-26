@@ -1,6 +1,7 @@
 package io.zgate.useradmin.server.client;
 
 import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
@@ -25,4 +26,7 @@ public interface KratosAdminClient {
 
     @Get("/identities")
     List<GetIdentityResp> getIdentities();
+
+    @Delete("/identities/{id}")
+    void deleteIdentity(@PathVariable("id") final String id);
 }

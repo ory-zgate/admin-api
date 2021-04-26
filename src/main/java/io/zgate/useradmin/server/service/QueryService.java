@@ -10,6 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import javax.inject.Singleton;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Singleton
 public class QueryService {
@@ -24,5 +27,11 @@ public class QueryService {
         IdentitySpec identitySpec = new IdentitySpec(command.getQuery());
         final Page<IdentityPO> page = identityRepository.findAll(identitySpec, PageRequest.of(command.getPage() - 1, command.getLimit()));
         return page.map(IdentityView::fromIdentityPO);
+    }
+
+    public List<IdentityView> listAll() {
+        return StreamSupport.stream(identityRepository.findAll().spliterator(), false)
+                            .map(IdentityView::fromIdentityPO)
+                            .collect(Collectors.toList());
     }
 }

@@ -2,6 +2,8 @@ package io.zgate.useradmin.server.controller;
 
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Delete;
+import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
@@ -16,6 +18,7 @@ import org.springframework.data.domain.Page;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Controller("/identity")
 public class UserAdminController {
@@ -42,6 +45,17 @@ public class UserAdminController {
     public Page<IdentityView> filterIdentities(@Valid QueryIdentityCommand command) {
         return queryService.queryIdentities(command);
     }
+
+    @Get
+    public List<IdentityView> list() {
+        return queryService.listAll();
+    }
+
+    @Delete("{id}")
+    public void deleteIdentity(@NotBlank @PathVariable("id") final String id) {
+        userService.deleteIdentity(id);
+    }
+
 
 
 }

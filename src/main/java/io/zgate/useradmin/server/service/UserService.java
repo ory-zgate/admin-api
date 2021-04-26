@@ -36,12 +36,12 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Identity createIdentity(CreateIdentityCommand command) {
+    public Identity createIdentity(final CreateIdentityCommand command) {
         final CreateIdentityResp resp = adminClient.createIdentity(command.toCreateIdentityReq());
         return resp.toIdentity();
     }
 
-    public void setPassword(String identityId, SetPasswordCommand command) {
+    public void setPassword(final String identityId, final SetPasswordCommand command) {
         checkIdentityExist(identityId);
 
         final IdentityCredentialTypesPO credentialTypes = identityCredentialTypesRepository.findByName("password");
@@ -62,7 +62,7 @@ public class UserService {
         }
     }
 
-    private void checkIdentityExist(String identityId) {
+    private void checkIdentityExist(final String identityId) {
         final GetIdentityResp identityResp = adminClient.getIdentity(identityId);
         if(identityResp == null) {
             throw new ApiException(ErrorEnum.IDENTITY_NOT_FOUND);
@@ -80,5 +80,9 @@ public class UserService {
     public List<Identity> listIdentities() {
         final List<GetIdentityResp> identityResps = adminClient.getIdentities();
         return ListUtil.convert(identityResps, GetIdentityResp::toIdentity);
+    }
+
+    public void deleteIdentity(final String id) {
+        adminClient.deleteIdentity(id);
     }
 }
