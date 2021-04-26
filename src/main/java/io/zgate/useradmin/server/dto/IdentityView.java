@@ -5,14 +5,18 @@ import io.zgate.useradmin.server.model.Identity;
 import io.zgate.useradmin.server.persistence.po.IdentityPO;
 import io.zgate.useradmin.server.utils.JsonUtil;
 
+import java.util.Date;
+
 @Introspected
 public class IdentityView {
     private final String id;
     private final Object traits;
+    private final Date createdAt;
 
-    public IdentityView(String id, Object traits) {
+    public IdentityView(String id, Object traits, Date createdAt) {
         this.id = id;
         this.traits = traits;
+        this.createdAt = createdAt;
     }
 
     public String getId() {
@@ -21,6 +25,10 @@ public class IdentityView {
 
     public Object getTraits() {
         return traits;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
     public static IdentityView fromIdentity(Identity identity) {
@@ -36,12 +44,14 @@ public class IdentityView {
                 .builder()
                 .withId(identity.getId())
                 .withTraits(JsonUtil.toJsonObject(identity.getTraits()))
+                .withCreatedAt(identity.getCreatedAt())
                 .build();
     }
 
     public static final class IdentityViewBuilder {
         private String id;
         private Object traits;
+        private Date createdAt;
 
         private IdentityViewBuilder() {
         }
@@ -60,8 +70,13 @@ public class IdentityView {
             return this;
         }
 
+        public IdentityViewBuilder withCreatedAt(Date createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
         public IdentityView build() {
-            return new IdentityView(id, traits);
+            return new IdentityView(id, traits, createdAt);
         }
     }
 }
