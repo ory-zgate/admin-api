@@ -1,6 +1,7 @@
 package io.zgate.admin.access.controller;
 
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
@@ -24,6 +25,6 @@ public class AccessCheckController {
     public HttpResponse<Void> check(@Body @NotNull CheckPayload payload) {
         logger.info("receiving payload: {}", payload);
         boolean allowed = accessCheckService.check(payload.toCheckRequest());
-        return allowed ? HttpResponse.accepted() : HttpResponse.unauthorized();
+        return allowed ? HttpResponse.accepted() : HttpResponse.status(HttpStatus.FORBIDDEN);
     }
 }
