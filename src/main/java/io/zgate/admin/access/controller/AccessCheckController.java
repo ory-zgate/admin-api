@@ -25,6 +25,6 @@ public class AccessCheckController {
     public HttpResponse<Void> check(@Body @NotNull CheckPayload payload) {
         logger.info("receiving payload: {}", payload);
         boolean allowed = accessCheckService.check(payload.toCheckRequest());
-        return allowed ? HttpResponse.accepted() : HttpResponse.status(HttpStatus.FORBIDDEN);
+        return allowed ? HttpResponse.ok() : HttpResponse.status(HttpStatus.FORBIDDEN);
     }
 }
