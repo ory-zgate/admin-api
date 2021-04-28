@@ -22,11 +22,18 @@ datasources:
 
 jackson:
   property-naming-strategy: LOWER_CAMEL_CASE
+  bean-introspection-module: true
 
 jpa:
   default:
     entity-scan:
       packages: 'io.zgate.admin.access.persistence.po'
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        format_sql: true
+        bytecode:
+          provider: none
 
 kratos:
   endpoint:
@@ -35,4 +42,4 @@ kratos:
 
 keto:
   endpoint:
-    admin: "${KETO_ADMIN_URL:`http://127.0.0.1:4466`}"
+    read: "${KETO_READ_URL:`http://127.0.0.1:4466`}"

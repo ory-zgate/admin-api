@@ -5,7 +5,7 @@ import io.zgate.admin.access.client.model.CheckRequest;
 import io.zgate.admin.access.client.model.CheckResponse;
 
 @Fallback
-public class KetoFallback implements KetoAdminClient{
+public class KetoFallback implements KetoReadClient {
     @Override
     public CheckResponse check(CheckRequest request) {
         return CheckResponse.NOT_ALLOWED;

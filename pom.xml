@@ -97,6 +97,11 @@
             <version>${micronaut-data.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.micronaut.configuration</groupId>
+            <artifactId>micronaut-hibernate-jpa</artifactId>
+            <version>2.2.6</version>
+        </dependency>
+        <dependency>
             <groupId>io.micronaut.data</groupId>
             <artifactId>micronaut-data-spring-jpa</artifactId>
             <version>${micronaut-data.version}</version>

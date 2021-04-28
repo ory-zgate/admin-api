@@ -1,6 +1,6 @@
 package io.zgate.admin.access.service;
 
-import io.zgate.admin.access.client.KetoAdminClient;
+import io.zgate.admin.access.client.KetoReadClient;
 import io.zgate.admin.access.client.model.CheckRequest;
 import io.zgate.admin.access.client.model.CheckResponse;
 
@@ -8,9 +8,9 @@ import javax.inject.Singleton;
 
 @Singleton
 public class AccessCheckService {
-    private final KetoAdminClient adminClient;
+    private final KetoReadClient adminClient;
 
-    public AccessCheckService(KetoAdminClient adminClient) {
+    public AccessCheckService(KetoReadClient adminClient) {
         this.adminClient = adminClient;
     }
 

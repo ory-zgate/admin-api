@@ -10,8 +10,8 @@ import io.zgate.admin.access.client.model.CheckResponse;
  * This is just a client wrapper for keto admin api.
  * Please visit https://www.ory.sh/keto/docs/reference/api for more details.
  */
-@Client("${keto.endpoint.admin}")
-public interface KetoAdminClient {
+@Client("${keto.endpoint.read}")
+public interface KetoReadClient {
     @Post("/check")
     CheckResponse check(@Body CheckRequest request);
 }
