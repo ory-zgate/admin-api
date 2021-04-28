@@ -1,12 +1,16 @@
 micronaut:
   application:
-    name: userAdminApi
+    name: adminApi
   http:
     client:
       log-level: trace
 
   security:
     enabled: false
+  server:
+    netty:
+      access-logger:
+        enabled: true
 
 datasources:
   default:
@@ -22,9 +26,13 @@ jackson:
 jpa:
   default:
     entity-scan:
-      packages: 'io.zgate.useradmin.server.persistence.po'
+      packages: 'io.zgate.admin.access.persistence.po'
 
 kratos:
   endpoint:
     admin: "${KRATOS_ADMIN_URL:`http://127.0.0.1:4434`}"
     public: "${KRATOS_PUBLIC_URL:`http://127.0.0.1:4433`}"
+
+keto:
+  endpoint:
+    admin: "${KETO_ADMIN_URL:`http://127.0.0.1:4466`}"

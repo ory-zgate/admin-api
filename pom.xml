@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.zgate</groupId>
-    <artifactId>user-admin-api</artifactId>
+    <artifactId>admin-api</artifactId>
     <version>1.0</version>
     <packaging>${packaging}</packaging>
 
@@ -18,7 +18,7 @@
         <jdk.version>11</jdk.version>
         <release.version>11</release.version>
         <micronaut.version>2.4.2</micronaut.version>
-        <exec.mainClass>io.zgate.useradmin.server.Application</exec.mainClass>
+        <exec.mainClass>io.zgate.admin.Application</exec.mainClass>
         <micronaut.runtime>netty</micronaut.runtime>
         <micronaut-data.version>2.4.1</micronaut-data.version>
     </properties>
@@ -188,7 +188,7 @@
                     </annotationProcessorPaths>
                     <compilerArgs>
                         <arg>-Amicronaut.processing.group=io.zgate</arg>
-                        <arg>-Amicronaut.processing.module=user-admin-api</arg>
+                        <arg>-Amicronaut.processing.module=admin-api</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
@@ -216,7 +216,7 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <configuration>
                     <to>
-                        <image>registry.hub.docker.com/zgate/user-admin-api:${project.version}</image>
+                        <image>registry.hub.docker.com/zgate/admin-api:${project.version}</image>
                         <auth>
                             <username>${env.DOCKER_HUB_USERNAME}</username>
                             <password>${env.DOCKER_HUB_PASSWORD}</password>
