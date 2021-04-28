@@ -27,13 +27,7 @@ jackson:
 jpa:
   default:
     entity-scan:
-      packages: 'io.zgate.admin.access.persistence.po'
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL57Dialect
-        format_sql: true
-        bytecode:
-          provider: none
+      packages: 'io.zgate.admin.user.persistence.po'
 
 kratos:
   endpoint:

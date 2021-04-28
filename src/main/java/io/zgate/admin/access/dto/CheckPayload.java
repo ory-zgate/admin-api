@@ -25,4 +25,13 @@ public class CheckPayload {
                 .withRelation("mock")
                 .build();
     }
+
+    @Override
+    public String toString() {
+        return "CheckPayload{" +
+                "namespace='" + namespace + '\'' +
+                ", subject='" + subject + '\'' +
+                ", resource='" + resource + '\'' +
+                '}';
+    }
 }

@@ -6,11 +6,14 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
 import io.zgate.admin.access.dto.CheckPayload;
 import io.zgate.admin.access.service.AccessCheckService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.constraints.NotNull;
 
 @Controller("/access")
 public class AccessCheckController {
+    private static final Logger logger = LoggerFactory.getLogger(AccessCheckController.class);
     private final AccessCheckService accessCheckService;
 
     public AccessCheckController(AccessCheckService accessCheckService) {
@@ -19,6 +22,7 @@ public class AccessCheckController {
 
     @Post("/check")
     public HttpResponse<Void> check(@Body @NotNull CheckPayload payload) {
+        logger.info("receiving payload: {}", payload);
         boolean allowed = accessCheckService.check(payload.toCheckRequest());
         return allowed ? HttpResponse.accepted() : HttpResponse.unauthorized();
     }
