@@ -30,7 +30,7 @@ jobs:
       env:
         DOCKER_HUB_USERNAME: ${{secrets.DOCKER_HUB_USERNAME}}
         DOCKER_HUB_PASSWORD: ${{secrets.DOCKER_HUB_PASSWORD}}
-      run: ./mvnw -q deploy -Dpackaging=docker -Djib.to.image=registry.hub.docker.com/zgate/admin-api:${{steps.short-sha.outputs.sha}}
+      run: ./mvnw -q clean deploy -Dpackaging=docker -Djib.to.image=registry.hub.docker.com/zgate/admin-api:${{steps.short-sha.outputs.sha}}
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
       env:
