@@ -22,6 +22,9 @@ public class IdentityPO {
     @Column(name = "created_at")
     private Date createdAt;
 
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
     public String getId() {
         return id;
     }
@@ -62,9 +65,6 @@ public class IdentityPO {
         this.updatedAt = updatedAt;
     }
 
-    @Column(name = "updated_at")
 
-
-    private Date updatedAt;
 
 }

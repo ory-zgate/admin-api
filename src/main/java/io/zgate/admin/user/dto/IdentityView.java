@@ -12,11 +12,13 @@ public class IdentityView {
     private final String id;
     private final Object traits;
     private final Date createdAt;
+    private final String schemaId;
 
-    public IdentityView(String id, Object traits, Date createdAt) {
+    public IdentityView(String id, Object traits, Date createdAt, String schemaId) {
         this.id = id;
         this.traits = traits;
         this.createdAt = createdAt;
+        this.schemaId = schemaId;
     }
 
     public String getId() {
@@ -29,6 +31,10 @@ public class IdentityView {
 
     public Date getCreatedAt() {
         return createdAt;
+    }
+
+    public String getSchemaId() {
+        return schemaId;
     }
 
     public static IdentityView fromIdentity(Identity identity) {
@@ -45,6 +51,7 @@ public class IdentityView {
                 .withId(identity.getId())
                 .withTraits(JsonUtil.toJsonObject(identity.getTraits()))
                 .withCreatedAt(identity.getCreatedAt())
+                .withSchemaId(identity.getSchemaId())
                 .build();
     }
 
@@ -52,6 +59,7 @@ public class IdentityView {
         private String id;
         private Object traits;
         private Date createdAt;
+        private String schemaId;
 
         private IdentityViewBuilder() {
         }
@@ -75,8 +83,13 @@ public class IdentityView {
             return this;
         }
 
+        public IdentityViewBuilder withSchemaId(String schemaId) {
+            this.schemaId = schemaId;
+            return this;
+        }
+
         public IdentityView build() {
-            return new IdentityView(id, traits, createdAt);
+            return new IdentityView(id, traits, createdAt, schemaId);
         }
     }
 }
