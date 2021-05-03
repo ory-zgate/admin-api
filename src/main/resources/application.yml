@@ -37,3 +37,4 @@ kratos:
 keto:
   endpoint:
     read: "${KETO_READ_URL:`http://127.0.0.1:4466`}"
+    write: "${KETO_WRITE_URL:`http://127.0.0.1:4467`}"

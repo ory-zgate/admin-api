@@ -1,22 +1,24 @@
 package io.zgate.admin.access.dto;
 
 import io.micronaut.core.annotation.Introspected;
-import io.zgate.admin.access.client.model.CheckRequest;
+import io.zgate.admin.access.client.model.RelationTupleRequest;
 
 @Introspected
-public class CheckPayload {
+public class RelationTuplePayload {
     private final String namespace;
     private final String subject;
     private final String resource;
+    private final String relation;
 
-    public CheckPayload(String namespace, String subject, String resource) {
+    public RelationTuplePayload(String namespace, String subject, String resource, String relation) {
         this.namespace = namespace;
         this.subject = subject;
         this.resource = resource;
+        this.relation = relation;
     }
 
-    public CheckRequest toCheckRequest() {
-        return CheckRequest.Builder
+    public RelationTupleRequest toRequest() {
+        return RelationTupleRequest.Builder
                 .builder()
                 .withNamespace(namespace)
                 .withSubject(subject)
@@ -28,10 +30,11 @@ public class CheckPayload {
 
     @Override
     public String toString() {
-        return "CheckPayload{" +
+        return "RelationTuplePayload{" +
                 "namespace='" + namespace + '\'' +
                 ", subject='" + subject + '\'' +
                 ", resource='" + resource + '\'' +
+                ", relation='" + relation + '\'' +
                 '}';
     }
 }

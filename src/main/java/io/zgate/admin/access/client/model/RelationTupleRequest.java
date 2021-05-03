@@ -3,13 +3,13 @@ package io.zgate.admin.access.client.model;
 import io.micronaut.core.annotation.Introspected;
 
 @Introspected
-public class CheckRequest {
+public class RelationTupleRequest {
     private final String namespace;
     private final String object;
     private final String relation;
     private final String subject;
 
-    public CheckRequest(String namespace, String object, String relation, String subject) {
+    public RelationTupleRequest(String namespace, String object, String relation, String subject) {
         this.namespace = namespace;
         this.object = object;
         this.relation = relation;
@@ -76,8 +76,8 @@ public class CheckRequest {
             return this;
         }
 
-        public CheckRequest build() {
-            return new CheckRequest(namespace, object, relation, subject);
+        public RelationTupleRequest build() {
+            return new RelationTupleRequest(namespace, object, relation, subject);
         }
     }
 }
