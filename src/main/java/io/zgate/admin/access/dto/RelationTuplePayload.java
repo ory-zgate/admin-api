@@ -7,13 +7,13 @@ import io.zgate.admin.access.client.model.RelationTupleRequest;
 public class RelationTuplePayload {
     private final String namespace;
     private final String subject;
-    private final String resource;
+    private final String object;
     private final String relation;
 
-    public RelationTuplePayload(String namespace, String subject, String resource, String relation) {
+    public RelationTuplePayload(String namespace, String subject, String object, String relation) {
         this.namespace = namespace;
         this.subject = subject;
-        this.resource = resource;
+        this.object = object;
         this.relation = relation;
     }
 
@@ -22,7 +22,7 @@ public class RelationTuplePayload {
                 .builder()
                 .withNamespace(namespace)
                 .withSubject(subject)
-                .withObject(resource)
+                .withObject(object)
                 //https://github.com/ory/oathkeeper/pull/676
                 .withRelation("mock")
                 .build();
@@ -33,7 +33,7 @@ public class RelationTuplePayload {
         return "RelationTuplePayload{" +
                 "namespace='" + namespace + '\'' +
                 ", subject='" + subject + '\'' +
-                ", resource='" + resource + '\'' +
+                ", object='" + object + '\'' +
                 ", relation='" + relation + '\'' +
                 '}';
     }
