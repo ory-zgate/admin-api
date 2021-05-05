@@ -7,7 +7,6 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
-import io.micronaut.http.annotation.Put;
 import io.micronaut.http.annotation.QueryValue;
 import io.zgate.admin.access.client.model.QueryResponse;
 import io.zgate.admin.access.dto.RelationTuplePayload;
@@ -39,7 +38,7 @@ public class AccessController {
         return accessService.query(namespace);
     }
 
-    @Put("/create")
+    @Post("/create")
     public void create(@NotNull @Body RelationTuplePayload payload) {
         accessService.create(payload);
     }
