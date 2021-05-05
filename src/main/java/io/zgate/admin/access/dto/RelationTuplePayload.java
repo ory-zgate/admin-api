@@ -23,8 +23,7 @@ public class RelationTuplePayload {
                 .withNamespace(namespace)
                 .withSubject(subject)
                 .withObject(object)
-                //https://github.com/ory/oathkeeper/pull/676
-                .withRelation("mock")
+                .withRelation(relation)
                 .build();
     }
 
